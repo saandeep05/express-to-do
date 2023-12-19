@@ -20,7 +20,7 @@ app.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await User.create({username: username, password: hashedPassword});
         const accessToken = generateToken({username: username, password: hashedPassword});
-        res.json({accessToken: accessToken});
+        res.json({username: username, accessToken: accessToken});
     } catch(err) {res.status(404).json({data: 'please send username and password'})}
 });
 
